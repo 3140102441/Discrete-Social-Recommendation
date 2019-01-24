@@ -2,7 +2,7 @@
 
 ## Announcement:
 
-* The paper has been accepted by AAAI’19, Honolulu, Hawaii, USA([https://aaai.org/Conferences/AAAI-19/wp-content/uploads/2018/11/AAAI-19_Accepted_Papers.pdf](https://aaai.org/Conferences/AAAI-19/wp-content/uploads/2018/11/AAAI-19_Accepted_Papers.pdf)).
+* The paper has been accepted by AAAI'19, Honolulu, Hawaii, USA([https://aaai.org/Conferences/AAAI-19/wp-content/uploads/2018/11/AAAI-19_Accepted_Papers.pdf](https://aaai.org/Conferences/AAAI-19/wp-content/uploads/2018/11/AAAI-19_Accepted_Papers.pdf)).
 
 ## Description:
 
