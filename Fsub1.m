@@ -1,26 +1,24 @@
-function [ F ] = Fsub1( Rt, B, F, Z, r, N, M, beta3,S)
+function [ f ] = Fsub1( S, b, f, z, r, alpha, beta3,maxItr)
 % F-subproblem
-for u=1:N
-    BB = (B'*F(:,u))';
-    FLAg=1; step=0;
-    while FLAg
-        for k=1:r %for every user
-            fu0(k)=S(u,:)*B(k,:)'-BB*B(k,:)'+F(k,u);
-            fu(k)=fu0(k)+beta3*Z(k,u);
-            if fu(k)~=0
-                if F(k,u)==sign(fu(k))
-                    fl(k)=0;
-                else
-                    F(k,u)=sign(fu(k));
-                    fl(k)=1;
-                end
+bb = (b'*f)';
+FLAg=1; step=0;
+while FLAg && step < maxItr
+    for k=1:r 
+        fu0(k)=S'*b(k,:)'-bb*b(k,:)'+length(S)*f(k);
+        fu(k)=alpha*fu0(k)+beta3*z(k);
+        if fu(k)~=0
+            if f(k)==sign(fu(k))
+                fl(k)=0;
             else
-                continue;
+                f(k)=sign(fu(k));
+                fl(k)=1;
             end
+        else
+            continue;
         end
-        FLAg=sum(fl);
-        step=step+1;
     end
-end
+    FLAg=sum(fl);
+    step=step+1;
+    
 end
 

@@ -1,27 +1,27 @@
-function [ B ] = Bsub1( Rt, S, B, D, F, X, r, N, M, alpha, beta1)
+function [ b ] = Bsub1( Rt, S, b, d, f, x, r,alpha, beta1,maxItr)
 % B-subproblem
-for u=1:N
-    DD = (D'*B(:,u))';
-    FF= (F'*B(:,u))';
-    
-    FLAg=1; step=0;
-    while FLAg
-        for k=1:r %for every user
-            bu0(k)=Rt(u,:)*D(k,:)'-DD*D(k,:)'+B(k,u)+alpha*(S(u,:)*F(k,:)'-FF*F(k,:)');
-            bu(k)=bu0(k)+beta1*X(k,u);
-            if bu(k)~=0
-                if B(k,u)==sign(bu(k))
-                    fl(k)=0;
-                else
-                    B(k,u)=sign(bu(k));
-                    fl(k)=1;
-                end
+
+dd = (d'*b)';
+ff= (f'*b)';
+
+FLAg=1; step=0;
+while FLAg && step < maxItr
+    for k=1:r 
+        bu0(k)=Rt*d(k,:)'-dd*d(k,:)'+length(Rt)*b(k)+alpha*(S*f(k,:)'-ff*f(k,:)'+length(S)*b(k));
+        bu(k)=bu0(k)+beta1*x(k);
+        if bu(k)~=0
+            if b(k)==sign(bu(k))
+                fl(k)=0;
             else
-                continue;
+                b(k)=sign(bu(k));
+                fl(k)=1;
             end
+        else
+            continue;
         end
-        FLAg=sum(fl);
-        step=step+1;
     end
+    FLAg=sum(fl);
+    step=step+1;
 end
+
 end
