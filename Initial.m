@@ -28,7 +28,7 @@ while ~converge
         end
         Tri = ScaleScore(Tri,r,5,1);
         temp1 = Qi*Tri'+alpha*Ri*Si'+beta1*X(:,i);
-        temp2 = Qi*Qi'+alpha*Ri*Ri'+beta1*(length(Tri)+length(Si))*eye(r);
+        temp2 = Qi*Qi'+alpha*Ri*Ri'+beta1*eye(r);
         P(:,i) = temp2\temp1;
     end
     parfor j = 1:M
@@ -38,7 +38,7 @@ while ~converge
             continue;
         end
         Trj = ScaleScore(Trj,r,5,1);
-        temp1 = Pj*Pj'+beta2*length(Trj)*eye(r);%quadratic term
+        temp1 = Pj*Pj'+beta2*eye(r);%quadratic term
         temp2 = Pj*Trj+beta2*Y(:,j);% linear term
         Q(:,j) = temp1\temp2;
     end
@@ -48,7 +48,7 @@ while ~converge
         if isempty(Sj)
             continue;
         end
-        temp1 = (alpha*Pj)*Pj'+beta3*length(Sj)*eye(r);%quadratic term
+        temp1 = (alpha*Pj)*Pj'+beta3*eye(r);%quadratic term
         temp2 = Pj*Sj*alpha+beta3*Z(:,j);% linear term
         R(:,j) = temp1\temp2;
     end
