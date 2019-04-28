@@ -15,10 +15,10 @@ S = S>0 ;
 S = sparse(S);
 
 %parameter
-alpha=0.02*10^-2;
-beta1=0.001*10^-1;
-beta2=0.001*10^-1;
-beta3=0.001*10^-1;
+alpha=0.5;
+beta1=0.1;
+beta2=0.1;
+beta3=0.1;
 
 %the length of hash code
 r = 8;
